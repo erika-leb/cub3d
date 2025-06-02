@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:23:01 by ele-borg          #+#    #+#             */
-/*   Updated: 2025/06/02 13:23:17 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/02 19:26:22 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,22 @@ typedef struct s_data
 	char	*we;
 	char	**map;
 	int		i;
-	int		t;
+	int		flag;
 	char	*s1;
 }	t_data;
 
 //main.c
 int		ft_parsing(char **argv, t_data *data, t_gc *gc);
+
+//parsing.c
+int		ft_parsing(char **argv, t_data *data, t_gc *gc);
+
+//parsing_get_texture.c
+int		ft_check_if_texture(int *i, char *line);
+int		ft_process_data(int r, char *line, t_data *data, t_gc *gc);
+
+//parsing_check_texture.c
+int		ft_check_walls(t_data *data, t_gc *gc);
 
 //get_next_line.c
 char	*get_next_line(int fd);
@@ -56,5 +66,8 @@ char	*ft_free(char *s);
 
 //utils.c
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strdup_bis(char *s, t_gc *gc);
+void	ft_lose_space(char *s, int *i);
+int		ft_is_space(char c);
 
 #endif

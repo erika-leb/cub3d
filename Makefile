@@ -6,7 +6,7 @@
 #    By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 18:23:01 by ele-borg          #+#    #+#              #
-#    Updated: 2025/06/02 13:22:32 by ele-borg         ###   ########.fr        #
+#    Updated: 2025/06/02 19:42:45 by ele-borg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,9 @@ SRC_FILES = ${SRC_DIR}/main.c \
 			${SRC_DIR}/get_next_line.c \
 			${SRC_DIR}/get_next_line_utils.c \
 			${SRC_DIR}/utils.c \
+			${SRC_DIR}/parsing.c \
+			${SRC_DIR}/parsing_get_texture.c \
+			${SRC_DIR}/parsing_check_texture.c \
 
 OBJ_FILES =	$(OBJ_DIR)/main.o \
 			${OBJ_DIR}/gc_cleanup.o \
@@ -33,10 +36,13 @@ OBJ_FILES =	$(OBJ_DIR)/main.o \
 			$(OBJ_DIR)/get_next_line.o \
 			$(OBJ_DIR)/get_next_line_utils.o \
 			$(OBJ_DIR)/utils.o \
+			$(OBJ_DIR)/parsing.o \
+			$(OBJ_DIR)/parsing_get_texture.o \
+			$(OBJ_DIR)/parsing_check_texture.o \
 
 NAME = cub3D
 
-FLAGS_C = -Wall -Wextra -Werror -I.
+FLAGS_C = -Wall -Wextra -Werror -g3 -I.
 
 # FLAGS_L = -fsanitize=thread
 
