@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:13:33 by ele-borg          #+#    #+#             */
-/*   Updated: 2025/06/03 17:39:18 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/03 17:55:31 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ int	ft_check_walls(t_data *data, t_gc *gc)
 		printf("Error: Missing texture or color\n");
 		return (1);
 	}
-	// printf("ea = %s\n", data->ea);
-	// printf("no = %s\n", data->no);
-	// printf("so = %s\n", data->so);
-	// printf("we = %s\n", data->we);
+	printf("ea = %s\n", data->ea);
+	printf("no = %s\n", data->no);
+	printf("so = %s\n", data->so);
+	printf("we = %s\n", data->we);
 	if (ft_xpm_extention(data->no) == 1 || ft_xpm_extention(data->so) == 1 || ft_xpm_extention(data->we) == 1 || ft_xpm_extention(data->ea) == 1)
 	{
 		printf("Error: wrong texture extention\n");

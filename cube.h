@@ -6,14 +6,13 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:23:01 by ele-borg          #+#    #+#             */
-/*   Updated: 2025/06/03 16:35:12 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/03 17:48:09 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
 
-# include "./minilibx-linux/mlx.h"
 # include "gc/gc.h"
 # include <stdbool.h>
 # include <stdio.h>
@@ -40,6 +39,7 @@ typedef struct s_data
 	int		i;
 	int		flag;
 	char	*s1;
+	char	*stash;
 }	t_data;
 
 //main.c
@@ -63,16 +63,14 @@ int		ft_xpm_extention(char *s);
 int		ft_check_extention(char *s);
 
 //get_next_line.c
-char	*get_next_line(int fd);
-char	*clean_stash_buffer(char *stash, char *buffer, int *s);
-char	*read_and_stock(int fd, char *line, char *buffer, int *n);
-char	*ft_strdup(char *s);
+char	*get_next_line(int fd, t_data *data);
+
+//get_next_line_utils.c
 int		ft_strlen(char *s);
 int		ft_strchr(char *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char *s, int start, int len);
 void	*ft_calloc(size_t count, size_t size);
-char	*ft_free(char *s);
 
 //utils.c
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
