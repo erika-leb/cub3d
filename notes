@@ -16,3 +16,12 @@ il peut y avoir des espaces sur une ligne mais pas de saut de ligne ie \n\n atte
 je peux remplacer les epspaces par des 1
 
 fichier bastein dans bad, 1 et 2 fonctionnent c'est normal
+
+
+
+
+
+
+refaire bien tout les tests
+verifier fd ouvert et leak
+verifier si les xpm s'ouvrent bien

@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:23:01 by ele-borg          #+#    #+#             */
-/*   Updated: 2025/06/02 16:57:48 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/02 20:35:22 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_data	*ft_init(t_gc *gc)
 	data->we = NULL;
 	data->map = NULL;
 	data->flag = 0;
+	data->ceiling = NULL;
+	data->floor = NULL;
 	return (data);
 }
 

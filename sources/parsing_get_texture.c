@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:13:33 by ele-borg          #+#    #+#             */
-/*   Updated: 2025/06/02 19:21:41 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/03 17:32:06 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_get_file(char *line, t_data *data, t_gc *gc)
 		t++;
 	s = gc_malloc(sizeof(char) * (t + 1), gc);
 	t = 0;
-	while (line[data->i] && (line[data->i] != '\n' || line[data->i] != '\0' || line[data->i] == ' '))
+	while (line[data->i] && (line[data->i] != '\n' && line[data->i] != '\0'))
 	{
 		s[t] = line[data->i];
 		(data->i)++;
@@ -70,8 +70,8 @@ char	*ft_get_file(char *line, t_data *data, t_gc *gc)
 	s[t] = '\0';
 	// printf("t = %d\n", t);
 	// printf("s = %si\n", s);
-	// printf("s[t] = %dt\n", s[t]);
-	// printf("%dt\n", s[t + 1]);
+	// printf("s[t] = %c\n", s[t]);
+	// printf("s[t + 1] = %c\n", s[t + 1]);
 	return (s);
 }
 
@@ -134,6 +134,7 @@ int	ft_process_data(int r, char *line, t_data *data, t_gc *gc)
 	}
 	if (r == 2)
 	{
+		// perror("iic");
 		if (data->so != NULL)
 		{
 			printf("Error: Duplicated texture or color\n");

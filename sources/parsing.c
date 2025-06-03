@@ -6,31 +6,11 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:13:33 by ele-borg          #+#    #+#             */
-/*   Updated: 2025/06/02 19:41:30 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/03 17:31:55 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-int	ft_check_extention(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	if (i < 5)
-		return (1);
-	if (s[i - 1] != 'b')
-		return (1);
-	if (s[i - 2] != 'u')
-		return (1);
-	if (s[i - 3] != 'c')
-		return (1);
-	if (s[i - 4] != '.')
-		return (1);
-	return (0);
-}
 
 int	ft_get_data(int fd, t_data *data, t_gc *gc)
 {
@@ -62,6 +42,10 @@ int	ft_get_data(int fd, t_data *data, t_gc *gc)
 			return (free(line), (1));
 		// free(line);
 	}
+	// printf("ea = %s\n", data->ea);
+	// printf("no = %s\n", data->no);
+	// printf("so = %s\n", data->so);
+	// printf("we = %s\n", data->we);
 	if (ft_check_walls(data, gc) == 1)
 		return (free(line), (1));
 	free(line);

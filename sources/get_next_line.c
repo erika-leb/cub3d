@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:13:37 by ele-borg          #+#    #+#             */
-/*   Updated: 2025/06/02 20:01:42 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/02 20:11:59 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ char	*clean_stash_buffer(char *stash, char *buffer, int *n)
 		stash = NULL;
 		if (i != -1)
 			stash = ft_substr(buffer, i + 1, *n - i - 1);
+		if (*n == 0 && stash && (stash[0] == '\0' || stash[0] == '\n')) // 🔥 Libère stash vide
+			ft_free(stash); // je sais pas si c est utile
 		return (ft_free(buffer), stash);
 	}
 }
@@ -118,12 +120,6 @@ char	*get_next_line(int fd)
 		line = ft_substr(stash, 0, ft_strchr(stash, '\n') + 1);
 	line = read_and_stock(fd, line, buffer, &n);
 	stash = clean_stash_buffer(stash, buffer, &n);
-// 	if (stash && stash[0] == '\0')
-// {
-//     free(stash);
-//     stash = NULL;
-// }
-	// if (stash != NULL && (line == NULL || line[0] == '\n'))
-	// 	ft_free (stash);
+	// printf("clean_stash_buffer -> new stash: %sg\n", stash);
 	return (line);
 }

@@ -6,13 +6,14 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:23:01 by ele-borg          #+#    #+#             */
-/*   Updated: 2025/06/02 19:26:22 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/03 16:35:12 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
 
+# include "./minilibx-linux/mlx.h"
 # include "gc/gc.h"
 # include <stdbool.h>
 # include <stdio.h>
@@ -33,6 +34,8 @@ typedef struct s_data
 	char	*ea;
 	char	*no;
 	char	*we;
+	int		*floor;
+	int		*ceiling;
 	char	**map;
 	int		i;
 	int		flag;
@@ -51,6 +54,13 @@ int		ft_process_data(int r, char *line, t_data *data, t_gc *gc);
 
 //parsing_check_texture.c
 int		ft_check_walls(t_data *data, t_gc *gc);
+
+//parsing_check_color.c
+int		ft_check_color(t_data *data, t_gc *gc);
+
+//parsing_extention.c
+int		ft_xpm_extention(char *s);
+int		ft_check_extention(char *s);
 
 //get_next_line.c
 char	*get_next_line(int fd);
