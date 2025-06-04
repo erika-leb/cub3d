@@ -17,19 +17,12 @@ int	ft_check_if_texture(int *i, char *line)
 	int	r;
 
 	r = 0;
-	// printf("line = %s\n", line + (*i));
 	if (!(line + (*i)))
-	{
-		// printf("Error: Missing data\n");
 		return (7);
-	}
 	if (ft_strncmp(line + (*i), "\0", 1) == 0)
 		r = 7;
 	if (ft_strncmp(line + (*i), "NO", 2) == 0 && ft_is_space(line[*i + 2]) == 1)
-	{
-		// perror("ici");
 		r = 1;
-	}
 	if (ft_strncmp(line + (*i), "SO ", 2) == 0 && ft_is_space(line[*i + 2]) == 1)
 		r = 2;
 	if (ft_strncmp(line + (*i), "WE ", 2) == 0 && ft_is_space(line[*i + 2]) == 1)
@@ -42,7 +35,6 @@ int	ft_check_if_texture(int *i, char *line)
 		r = 6;
 	if (ft_strncmp(line + (*i), "1", 1) == 0 || ft_strncmp(line + (*i), "0", 1) == 0)
 		r = 8;
-	// perror("stop");
 	return (r);
 }
 
@@ -57,7 +49,8 @@ char	*ft_get_file(char *line, t_data *data, t_gc *gc)
 		(data->i)++;
 	ft_lose_space(line, &data->i);
 	t = 0;
-	while (line[data->i + t] && (line[data->i + t] != '\n' || line[data->i + t] != '\0' || line[data->i + t] == ' '))
+	while (line[data->i + t] && (line[data->i + t] != '\n'
+			|| line[data->i + t] != '\0' || line[data->i + t] == ' '))
 		t++;
 	s = gc_malloc(sizeof(char) * (t + 1), gc);
 	t = 0;
@@ -68,10 +61,6 @@ char	*ft_get_file(char *line, t_data *data, t_gc *gc)
 		t++;
 	}
 	s[t] = '\0';
-	// printf("t = %d\n", t);
-	// printf("s = %si\n", s);
-	// printf("s[t] = %c\n", s[t]);
-	// printf("s[t + 1] = %c\n", s[t + 1]);
 	return (s);
 }
 
@@ -134,7 +123,6 @@ int	ft_process_data(int r, char *line, t_data *data, t_gc *gc)
 	}
 	if (r == 2)
 	{
-		// perror("iic");
 		if (data->so != NULL)
 		{
 			printf("Error: Duplicated texture or color\n");

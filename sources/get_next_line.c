@@ -12,14 +12,7 @@
 
 #include "cube.h"
 
-char	*ft_free(char *s)
-{
-	free(s);
-	s = NULL;
-	return (s);
-}
-
-char	*ft_strdup(char *s)
+char	*ft_strdup(char *s, t_gc *gc)
 {
 	char	*str;
 	int		i;
@@ -27,9 +20,7 @@ char	*ft_strdup(char *s)
 	i = 0;
 	if (s == NULL)
 		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (str == NULL)
-		return (NULL);
+	str = gc_malloc(sizeof(char) * (ft_strlen(s) + 1), gc);
 	while (s && s[i])
 	{
 		str[i] = s[i];
@@ -39,35 +30,7 @@ char	*ft_strdup(char *s)
 	return (str);
 }
 
-char	*clean_stash_buffer(char *stash, char *buffer, int *n)
-{
-	int		i;
-	int		j;
-	char	*temp;
-
-	i = ft_strchr(buffer, '\n');
-	j = ft_strchr(stash, '\n');
-	if (j != -1)
-	{
-		temp = ft_substr(stash, j + 1, ft_strlen(stash) - j - 1);
-		ft_free(stash);
-		stash = ft_strdup(temp);
-		return (ft_free(temp), ft_free(buffer), stash);
-	}
-	else
-	{
-		if (stash != NULL)
-			ft_free(stash);
-		stash = NULL;
-		if (i != -1)
-			stash = ft_substr(buffer, i + 1, *n - i - 1);
-		if (*n == 0 && stash && (stash[0] == '\0' || stash[0] == '\n')) // 🔥 Libère stash vide
-			ft_free(stash); // je sais pas si c est utile
-		return (ft_free(buffer), stash);
-	}
-}
-
-char	*read_and_stock(int fd, char *line, char *buffer, int *n)
+char	*read_and_stock(t_data *data, char *line, int *n, t_gc *gc)
 {
 	int			i;
 	int			f;
@@ -77,176 +40,75 @@ char	*read_and_stock(int fd, char *line, char *buffer, int *n)
 	i = -1;
 	while (i == -1 && *n == BUFFER_SIZE && ft_strchr(line, '\n') == -1)
 	{
-		*n = read(fd, buffer, BUFFER_SIZE);
+		*n = read(data->fd, data->buffer, BUFFER_SIZE);
 		if (*n == -1)
 			return (NULL);
-		i = ft_strchr(buffer, '\n');
+		i = ft_strchr(data->buffer, '\n');
 		f = (*n);
 		if (*n != 0)
 		{
 			if (i != -1)
 				f = i + 1;
-			tmp = ft_substr(buffer, 0, f);
-			temp = ft_strdup(line);
-			ft_free(line);
-			line = ft_strjoin(temp, tmp);
-			(ft_free(temp), ft_free(tmp));
+			tmp = ft_substr(data->buffer, 0, f, gc);
+			temp = ft_strdup(line, gc);
+			gc_free(line, gc);
+			line = ft_strjoin(temp, tmp, gc);
+			(gc_free(temp, gc), gc_free(tmp, gc));
 		}
 	}
 	return (line);
 }
 
-char	*get_next_line(int fd, t_data *data, t_gc *gc)
+void	clean_stash_buffer(t_data *data, int *n, t_gc *gc)
 {
-	char		*buffer;
-	// static char	*stash = NULL;
-	char		*line;
-	int			n;
+	int		i;
+	int		j;
+	char	*tp;
 
-	perror("hola");
-	if (fd == -1 || BUFFER_SIZE < 0 || read(fd, 0, 0) < 0)
+	i = ft_strchr(data->buffer, '\n');
+	j = ft_strchr(data->stash, '\n');
+	if (j != -1)
+	{
+		tp = ft_substr(data->stash, j + 1, ft_strlen(data->stash) - j - 1, gc);
+		gc_free(data->stash,gc);
+		data->stash = ft_strdup(tp, gc);
+		(gc_free(tp, gc), gc_free(data->buffer, gc));
+	}
+	else
 	{
 		if (data->stash != NULL)
-			data->stash = ft_free(data->stash);
-		return (NULL);
+			gc_free(data->stash, gc);
+		data->stash = NULL;
+		if (i != -1)
+			data->stash = ft_substr(data->buffer, i + 1, *n - i - 1, gc);
+		if (*n == 0 && data->stash && (data->stash[0] == '\0'
+				|| data->stash[0] == '\n'))
+			gc_free(data->stash, gc);
+		(gc_free(data->buffer, gc));
 	}
-	perror("que");
-	n = BUFFER_SIZE;
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (buffer == NULL)
-		return (NULL);
-	perror("le");
-	printf("data->stash =%s\n", data->stash);
-	perror("guaro");
-	line = NULL;
-	if (data->stash != NULL && data->stash[0] != '\0' && ft_strchr(data->stash, '\n') == -1)
-	{
-		perror("tumba");
-		line = ft_strdup(data->stash);
-	}
-	else if (data->stash != NULL && data->stash[0] != '\0' && ft_strchr(data->stash, '\n') != -1)
-	{
-		perror("tusi");
-		line = ft_substr(data->stash, 0, ft_strchr(data->stash, '\n') + 1);
-	}
-	perror("gusta");
-	line = read_and_stock(fd, line, buffer, &n);
-	data->stash = clean_stash_buffer(data->stash, buffer, &n);
-	// printf("clean_stash_buffer -> new stash: %sg\n", stash);
-	perror("tal");
-	return (line);
 }
 
+char	*get_next_line(int fd, t_data *data, t_gc *gc)
+{
+	char	*line;
+	int		n;
 
-
-// char	*ft_free(char *s)
-// {
-// 	free(s);
-// 	s = NULL;
-// 	return (s);
-// }
-
-// char	*ft_strdup(char *s)
-// {
-// 	char	*str;
-// 	int		i;
-
-// 	i = 0;
-// 	if (s == NULL)
-// 		return (NULL);
-// 	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
-// 	if (str == NULL)
-// 		return (NULL);
-// 	while (s && s[i])
-// 	{
-// 		str[i] = s[i];
-// 		i++;
-// 	}
-// 	str[i] = '\0';
-// 	return (str);
-// }
-
-// char	*clean_stash_buffer(char *stash, char *buffer, int *n)
-// {
-// 	int		i;
-// 	int		j;
-// 	char	*temp;
-
-// 	i = ft_strchr(buffer, '\n');
-// 	j = ft_strchr(stash, '\n');
-// 	if (j != -1)
-// 	{
-// 		temp = ft_substr(stash, j + 1, ft_strlen(stash) - j - 1);
-// 		ft_free(stash);
-// 		stash = ft_strdup(temp);
-// 		return (ft_free(temp), ft_free(buffer), stash);
-// 	}
-// 	else
-// 	{
-// 		if (stash != NULL)
-// 			ft_free(stash);
-// 		stash = NULL;
-// 		if (i != -1)
-// 			stash = ft_substr(buffer, i + 1, *n - i - 1);
-// 		if (*n == 0 && stash && (stash[0] == '\0' || stash[0] == '\n')) // 🔥 Libère stash vide
-// 			ft_free(stash); // je sais pas si c est utile
-// 		return (ft_free(buffer), stash);
-// 	}
-// }
-
-// char	*read_and_stock(int fd, char *line, char *buffer, int *n)
-// {
-// 	int			i;
-// 	int			f;
-// 	char		*temp;
-// 	char		*tmp;
-
-// 	i = -1;
-// 	while (i == -1 && *n == BUFFER_SIZE && ft_strchr(line, '\n') == -1)
-// 	{
-// 		*n = read(fd, buffer, BUFFER_SIZE);
-// 		if (*n == -1)
-// 			return (NULL);
-// 		i = ft_strchr(buffer, '\n');
-// 		f = (*n);
-// 		if (*n != 0)
-// 		{
-// 			if (i != -1)
-// 				f = i + 1;
-// 			tmp = ft_substr(buffer, 0, f);
-// 			temp = ft_strdup(line);
-// 			ft_free(line);
-// 			line = ft_strjoin(temp, tmp);
-// 			(ft_free(temp), ft_free(tmp));
-// 		}
-// 	}
-// 	return (line);
-// }
-
-// char	*get_next_line(int fd)
-// {
-// 	char		*buffer;
-// 	static char	*stash = NULL;
-// 	char		*line;
-// 	int			n;
-
-// 	if (fd == -1 || BUFFER_SIZE < 0 || read(fd, stash, 0) < 0)
-// 	{
-// 		if (stash != NULL)
-// 			stash = ft_free(stash);
-// 		return (NULL);
-// 	}
-// 	n = BUFFER_SIZE;
-// 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-// 	if (buffer == NULL)
-// 		return (NULL);
-// 	line = NULL;
-// 	if (stash != NULL && stash[0] != '\0' && ft_strchr(stash, '\n') == -1)
-// 		line = ft_strdup(stash);
-// 	else if (stash != NULL && stash[0] != '\0' && ft_strchr(stash, '\n') != -1)
-// 		line = ft_substr(stash, 0, ft_strchr(stash, '\n') + 1);
-// 	line = read_and_stock(fd, line, buffer, &n);
-// 	stash = clean_stash_buffer(stash, buffer, &n);
-// 	// printf("clean_stash_buffer -> new stash: %sg\n", stash);
-// 	return (line);
-// }
+	line = NULL;
+	if (fd == -1 || BUFFER_SIZE < 0 || read(fd, 0, 0) < 0)
+		return (NULL);
+	n = BUFFER_SIZE;
+	data->buffer = gc_calloc(BUFFER_SIZE + 1, sizeof(char), gc);
+	if (data->stash != NULL && data->stash[0] != '\0'
+			&& ft_strchr(data->stash, '\n') == -1)
+	{
+		line = ft_strdup(data->stash, gc);
+	}
+	else if (data->stash != NULL && data->stash[0] != '\0'
+			&& ft_strchr(data->stash, '\n') != -1)
+	{
+		line = ft_substr(data->stash, 0, ft_strchr(data->stash, '\n') + 1, gc);
+	}
+	line = read_and_stock(data, line, &n, gc);
+	clean_stash_buffer(data, &n, gc);
+	return (line);
+}

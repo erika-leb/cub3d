@@ -40,10 +40,11 @@ typedef struct s_data
 	int		flag;
 	char	*s1;
 	char	*stash;
+	int		fd;
+	char	*buffer;
+	int		lg;
+	int		cl;
 }	t_data;
-
-//main.c
-int		ft_parsing(char **argv, t_data *data, t_gc *gc);
 
 //parsing.c
 int		ft_parsing(char **argv, t_data *data, t_gc *gc);
@@ -63,14 +64,14 @@ int		ft_xpm_extention(char *s);
 int		ft_check_extention(char *s);
 
 //get_next_line.c
-char	*get_next_line(int fd, t_data *data);
+char	*get_next_line(int fd, t_data *data, t_gc *gc);
 
 //get_next_line_utils.c
 int		ft_strlen(char *s);
 int		ft_strchr(char *s, char c);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_substr(char *s, int start, int len);
-void	*ft_calloc(size_t count, size_t size);
+char	*ft_strjoin(char *s1, char *s2, t_gc *gc);
+char	*ft_substr(char *s, int start, int len, t_gc *gc);
+void	gc_free(char *s, t_gc *gc);
 
 //utils.c
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

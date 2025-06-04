@@ -46,9 +46,8 @@ OBJ_FILES =	$(OBJ_DIR)/main.o \
 
 NAME = cub3D
 
-FLAGS_C = -Wall -Wextra -Werror -g3 -I.
-
-# FLAGS_L = -fsanitize=thread
+FLAGS_C = -Wall -Wextra -g3 -I.
+# FLAGS_C = -Wall -Wextra -Werror -g3 -I.
 
 CC = cc
 

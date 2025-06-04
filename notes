@@ -20,8 +20,15 @@ fichier bastein dans bad, 1 et 2 fonctionnent c'est normal
 
 
 
-
+valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all ./cub3D maps/good/1.cub
 
 refaire bien tout les tests
 verifier fd ouvert et leak
 verifier si les xpm s'ouvrent bien
+
+
+/home/erika_leb/cub3d
+
+
+pour les fichiers corrompus :  tr -d '\r' < maps/good/1.cub > maps/good/1_clean.cub
+verif cat -A nomfichier

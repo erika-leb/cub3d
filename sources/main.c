@@ -29,6 +29,10 @@ t_data	*ft_init(t_gc *gc)
 	data->ceiling = NULL;
 	data->floor = NULL;
 	data->stash = NULL;
+	data->fd = -1;
+	data->buffer = NULL;
+	data->lg = 0;
+	data->cl = 0;
 	return (data);
 }
 

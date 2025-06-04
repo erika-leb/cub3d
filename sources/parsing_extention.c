@@ -17,7 +17,6 @@ int	ft_xpm_extention(char *s)
 	int	i;
 
 	i = 0;
-	// printf("s = %si\n", s);
 	while (s[i])
 		i++;
 	if (i < 5)

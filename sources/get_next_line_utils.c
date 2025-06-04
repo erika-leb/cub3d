@@ -44,13 +44,13 @@ int	ft_strchr(char *s, char c)
 	return (-1);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2, t_gc *gc)
 {
 	int		i;
 	char	*str;
 	int		k;
 
-	str = malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
+	str = gc_malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1, gc);
 	if (str == NULL)
 		return (NULL);
 	i = 0;
@@ -66,7 +66,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-char	*ft_substr(char *s, int start, int len)
+char	*ft_substr(char *s, int start, int len, t_gc *gc)
 {
 	char	*str;
 	int		i;
@@ -78,7 +78,7 @@ char	*ft_substr(char *s, int start, int len)
 		return ("");
 	if (len > ft_strlen(s + start))
 		len = ft_strlen(s + start);
-	str = malloc(sizeof(char) * (len + 1));
+	str = gc_malloc(sizeof(char) * (len + 1), gc);
 	if (str == 0)
 		return (NULL);
 	while (i < len && s[start + i])
@@ -90,18 +90,8 @@ char	*ft_substr(char *s, int start, int len)
 	return (str);
 }
 
-void	*ft_calloc(size_t n, size_t sizof)
+void	gc_free(char *s, t_gc *gc)
 {
-	unsigned char	*buffer;
-	size_t			i;
-
-	if (n < 1 || sizof < 1 || n > SIZE_MAX / sizof)
-		return (NULL);
-	i = 0;
-	buffer = malloc(n * sizof);
-	if (buffer == NULL)
-		return (NULL);
-	while (i < n * sizof)
-		buffer[i++] = (unsigned char)0;
-	return (buffer);
+	gc_remove(gc, s);
+	s = NULL;
 }

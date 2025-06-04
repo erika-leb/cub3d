@@ -12,8 +12,6 @@
 
 #include "cube.h"
 
-// reste a verifier les xpm
-
 int	ft_check_files(t_data *data)
 {
 	int	fd;
@@ -39,16 +37,18 @@ int	ft_check_files(t_data *data)
 
 int	ft_check_walls(t_data *data, t_gc *gc)
 {
-	if (data->no == NULL || data->so == NULL || data->we == NULL || data->ea == NULL || data->c == NULL || data->f == NULL)
+	if (data->no == NULL || data->so == NULL || data->we == NULL
+			|| data->ea == NULL || data->c == NULL || data->f == NULL)
 	{
 		printf("Error: Missing texture or color\n");
 		return (1);
 	}
-	printf("ea = %s\n", data->ea);
+	printf("ea = %si\n", data->ea);
 	printf("no = %s\n", data->no);
 	printf("so = %s\n", data->so);
 	printf("we = %s\n", data->we);
-	if (ft_xpm_extention(data->no) == 1 || ft_xpm_extention(data->so) == 1 || ft_xpm_extention(data->we) == 1 || ft_xpm_extention(data->ea) == 1)
+	if (ft_xpm_extention(data->no) == 1 || ft_xpm_extention(data->so) == 1
+			|| ft_xpm_extention(data->we) == 1 || ft_xpm_extention(data->ea) == 1)
 	{
 		printf("Error: wrong texture extention\n");
 		return (1);
