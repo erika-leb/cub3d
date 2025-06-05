@@ -44,6 +44,9 @@ typedef struct s_data
 	char	*buffer;
 	int		lg;
 	int		cl;
+	int		start;
+	char	*arg;
+	char	*line;
 }	t_data;
 
 //parsing.c

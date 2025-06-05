@@ -33,6 +33,9 @@ t_data	*ft_init(t_gc *gc)
 	data->buffer = NULL;
 	data->lg = 0;
 	data->cl = 0;
+	data->start = 0;
+	data->arg = NULL;
+	data->line = NULL;
 	return (data);
 }
 
@@ -46,6 +49,7 @@ int main(int argc, char **argv, char **env)
 	gc_init(&gc);
 	data = NULL;
 	data = ft_init(&gc);
+	data->arg = argv[1];
 	if (ft_parsing(argv, data, &gc) == 1)
 	{
 		gc_cleanup(&gc);

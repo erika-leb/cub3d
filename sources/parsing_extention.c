@@ -16,7 +16,15 @@ int	ft_xpm_extention(char *s)
 {
 	int	i;
 
+	// i = 0;
+	// while(s[i])
+	// {
+	// 	printf("%d = %d\n", i, s[i]);
+	// 	i++;
+	// }
+
 	i = 0;
+
 	while (s[i])
 		i++;
 	if (i < 5)

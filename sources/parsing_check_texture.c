@@ -43,10 +43,10 @@ int	ft_check_walls(t_data *data, t_gc *gc)
 		printf("Error: Missing texture or color\n");
 		return (1);
 	}
-	printf("ea = %si\n", data->ea);
-	printf("no = %s\n", data->no);
-	printf("so = %s\n", data->so);
-	printf("we = %s\n", data->we);
+	// printf("ea = %si\n", data->ea);
+	// printf("no = %si\n", data->no);
+	// printf("so = %si\n", data->so);
+	// printf("we = %si\n", data->we);
 	if (ft_xpm_extention(data->no) == 1 || ft_xpm_extention(data->so) == 1
 			|| ft_xpm_extention(data->we) == 1 || ft_xpm_extention(data->ea) == 1)
 	{
