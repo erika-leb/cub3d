@@ -28,6 +28,7 @@ t_data	*ft_init(t_gc *gc)
 	data->flag = 0;
 	data->ceiling = NULL;
 	data->floor = NULL;
+	data->pos = -1;
 	data->stash = NULL;
 	data->fd = -1;
 	data->buffer = NULL;
@@ -37,6 +38,8 @@ t_data	*ft_init(t_gc *gc)
 	data->arg = NULL;
 	data->line = NULL;
 	data->m = NULL;
+	data->pos_c = -1;
+	data->pos_l = -1;
 	return (data);
 }
 

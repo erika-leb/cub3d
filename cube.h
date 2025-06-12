@@ -36,6 +36,7 @@ typedef struct s_data
 	int		*floor;
 	int		*ceiling;
 	char	**map;
+	char	pos;
 	int		i;
 	int		flag;
 	char	*s1;
@@ -48,6 +49,8 @@ typedef struct s_data
 	char	*arg;
 	char	*line;
 	char	**m;
+	int		pos_l;
+	int		pos_c;
 }	t_data;
 
 //parsing.c
@@ -69,6 +72,10 @@ int		ft_check_extention(char *s);
 
 //parsing_flood_fill.c
 int 	ft_flood_fill(t_data *data, t_gc *gc);
+
+//pqrsing_get_map.c
+int		ft_arr_size(t_data *data, t_gc *gc);
+void	ft_get_map(t_data *data, t_gc *gc);
 
 //get_next_line.c
 char	*get_next_line(int fd, t_data *data, t_gc *gc);
