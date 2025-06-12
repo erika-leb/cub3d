@@ -38,8 +38,8 @@ t_data	*ft_init(t_gc *gc)
 	data->arg = NULL;
 	data->line = NULL;
 	data->m = NULL;
-	data->pos_c = -1;
-	data->pos_l = -1;
+	// data->pos_c = -1;
+	// data->pos_l = -1;
 	return (data);
 }
 
@@ -59,6 +59,7 @@ int main(int argc, char **argv, char **env)
 		gc_cleanup(&gc);
 		return (1);
 	}
+	perror("tout est ok, on va jusqu'ici");
 	gc_cleanup(&gc);
 	return (0);
 }

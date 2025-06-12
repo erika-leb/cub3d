@@ -46,18 +46,21 @@ int	ft_get_nb(char *s, int f, int *i)
 	int	nb;
 
 	nb = 0;
-	if (f == 1) // ,
+	if (f == 1) // il y a une virgule apres
 	{
 		(*i)++;
-		while (s[*i] != ',')
+		// printf("%c\n", s[*i]);
+		while (s[*i] && s[*i] != ',')
 			nb = nb * 10 + s[(*i)++] - '0';
 	}
 	else
 	{
 		(*i)++;
+		// printf("%c\n", s[*i]);
 		while (s[*i] || (s[*i] && ft_is_space(s[*i]) != 1))
 			nb = nb * 10 + s[(*i)++] - '0';
 	}
+	// printf("nb = %d\n", nb);
 	if (!(nb >= 0 && nb <= 255))
 		return (-1);
 	return (nb);
@@ -70,8 +73,10 @@ int		ft_get_color_floor(t_data *data)
 
 	i = -1;
 	nb = ft_get_nb(data->f, 1, &i);
+	// perror("basier");
 	if (nb == -1)
 		return (1);
+	// perror("l'akour");
 	data->floor[0] = nb;
 	nb = ft_get_nb(data->f, 1, &i);
 	if (nb == -1)
@@ -109,19 +114,24 @@ int	ft_check_color(t_data *data, t_gc *gc)
 {
 	data->ceiling = gc_malloc(sizeof(int) * 3, gc);
 	data->floor = gc_malloc(sizeof(int) * 3, gc);
+	// perror("ahou");
 	if (ft_is_conformed(data->c) == 1)
 		return (1);
+	// perror("tcha");
 	if (ft_is_conformed(data->f) == 1)
 		return (1);
+	// perror("mes");
 	if (ft_get_color_floor(data) == 1)
 		return (1);
+	// perror("yeux");
 	if (ft_get_color_ceiling(data) == 1)
 		return (1);
-	// printf("c[0] = %d\n", data->ceiling[0]);
-	// printf("c[1] = %d\n", data->ceiling[1]);
-	// printf("c[2] = %d\n", data->ceiling[2]);
-	// printf("f[0] = %d\n", data->floor[0]);
-	// printf("f[1] = %d\n", data->floor[1]);
-	// printf("f[2] = %d\n", data->floor[2]);
+	// perror("dans");
+	printf("c[0] = %d\n", data->ceiling[0]);
+	printf("c[1] = %d\n", data->ceiling[1]);
+	printf("c[2] = %d\n", data->ceiling[2]);
+	printf("f[0] = %d\n", data->floor[0]);
+	printf("f[1] = %d\n", data->floor[1]);
+	printf("f[2] = %d\n", data->floor[2]);
 	return (0);
 }

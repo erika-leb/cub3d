@@ -49,8 +49,8 @@ typedef struct s_data
 	char	*arg;
 	char	*line;
 	char	**m;
-	int		pos_l;
-	int		pos_c;
+	// int		pos_l;
+	// int		pos_c;
 }	t_data;
 
 //parsing.c

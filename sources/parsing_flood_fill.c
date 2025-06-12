@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:13:33 by ele-borg          #+#    #+#             */
-/*   Updated: 2025/06/12 16:09:50 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/12 19:55:10 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,40 @@ void	ft_copy_map(t_data *data, t_gc *gc)
 		data->m[k] = gc_malloc(sizeof(char) * (data->cl + 1), gc);
 		while (data->map[k][i] && data->map[k][i] != '\n')
 		{
-			data->m[k][i] = data->map[k][i];
+			if (ft_is_space(data->map[k][i]) == 1)
+				data->m[k][i] = '1';
+			else
+				data->m[k][i] = data->map[k][i];
 			i++;
 		}
 		data->m[k][i] = '\0';
 		k++;
 	}
-    data->map[k] = NULL;
+    data->m[k] = NULL;
     k = 0;
-	// perror("deuxieme");
-    // while (data->m[k])
-    // {
-    //     printf("%s\n", data->m[k]);
-    //     k++;
-    // }
+	perror("deuxieme");
+    while (data->m[k])
+    {
+        printf("%s\n", data->m[k]);
+        k++;
+    }
+}
+
+int	ft_up_down(t_data *data, int l)
+{
+	int	c;
+
+	c = 0;
+	if (l == 0 || l == data->lg - 1) //premiere et derniere ligne
+	{
+		while (data->map[l][c])
+		{
+			if (data->map[l][c] == '0')
+				return (1);
+			c++;
+		}
+	}
+	return (0);
 }
 
 int	ft_is_closed(t_data *data)
@@ -52,25 +72,45 @@ int	ft_is_closed(t_data *data)
 	while (++l < data->lg)
 	{
 		c = 0;
-		if (l == 0 || l == data->lg - 1) //premiere et derniere ligne
-		{
-			while (data->map[l][c])
-			{
-				if (data->map[l][c] == '0')
-					return (1);
-				c++;
-			}
-		}
+		if (ft_up_down(data, l) == 1)
+			return (1);
+		// if (l == 0 || l == data->lg - 1) //premiere et derniere ligne
+		// {
+		// 	while (data->map[l][c])
+		// 	{
+		// 		if (data->map[l][c] == '0')
+		// 			return (1);
+		// 		c++;
+		// 	}
+		// }
 		while (ft_is_space(data->m[l][c]) == 1)
 			c++;
-		if (data->m[l][c] == '0')
+		if (data->map[l][c] == '0')
 			return (1);
 		c = data->cl - 1;
 		while (ft_is_space(data->m[l][c]) == 1)
 			c--;
-		if (data->m[l][c] == '0')
+		if (data->map[l][c] == '0')
 			return (1);
-		// l++;
+	}
+	return (0);
+}
+
+int	ft_check_player(t_data *data, int *f, int c, int l)
+{
+	if ((data->map[l][c] == 'S' || data->map[l][c] == 'E' || data->map[l][c] == 'W'
+		|| data->map[l][c] == 'N') && (*f) == 1)
+	{
+		printf("Error: multiple players\n");
+		return (1);
+	}
+	if (data->map[l][c] == 'S' || data->map[l][c] == 'E' || data->map[l][c] == 'W'
+		|| data->map[l][c] == 'N')
+	{
+		(*f) = 1;
+		// data->pos_c = c;
+		// data->pos_l = l;
+		data->pos = data->map[l][c];
 	}
 	return (0);
 }
@@ -88,20 +128,22 @@ int	ft_get_pos(t_data *data)
 		c = 0;
 		while (c < data->cl)
 		{
-			if ((data->map[l][c] == 'S' || data->map[l][c] == 'E' || data->map[l][c] == 'W'
-					|| data->map[l][c] == 'N') && f == 1)
-			{
-				printf("Error: multiple players\n");
+			if (ft_check_player(data, &f, c, l) == 1)
 				return (1);
-			}
-			if (data->map[l][c] == 'S' || data->map[l][c] == 'E' || data->map[l][c] == 'W'
-					|| data->map[l][c] == 'N')
-			{
-				f = 1;
-				data->pos_c = c;
-				data->pos_l = l;
-				data->pos = data->map[l][c];
-			}
+			// if ((data->map[l][c] == 'S' || data->map[l][c] == 'E' || data->map[l][c] == 'W'
+			// 		|| data->map[l][c] == 'N') && f == 1)
+			// {
+			// 	printf("Error: multiple players\n");
+			// 	return (1);
+			// }
+			// if (data->map[l][c] == 'S' || data->map[l][c] == 'E' || data->map[l][c] == 'W'
+			// 		|| data->map[l][c] == 'N')
+			// {
+			// 	f = 1;
+			// 	data->pos_c = c;
+			// 	data->pos_l = l;
+			// 	data->pos = data->map[l][c];
+			// }
 			// printf("or if c = %d\n", c);
 			c++;
 		}

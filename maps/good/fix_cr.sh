@@ -6,8 +6,8 @@ DIR="maps/good"
 # Parcourt tous les fichiers .cub dans le dossier
 for file in "$DIR"/*.cub; do
     echo "Traitement de $file"
-    # Utilise sed pour supprimer les \r en place
-    sed -i 's/\r$//' "$file"
+    # Supprime tous les caractères \r (retour chariot)
+    sed -i 's/\r//g' "$file"
 done
 
 echo "Tous les fichiers ont été corrigés !"

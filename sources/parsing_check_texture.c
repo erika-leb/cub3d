@@ -16,9 +16,12 @@ int	ft_check_files(t_data *data)
 {
 	int	fd;
 
+	// perror("ici");
+	// printf("chemin = %s\n", data->ea);
 	fd = open(data->ea, O_RDONLY);
 	if (fd == -1)
 		return (1);
+	// perror("la");
 	close(fd);
 	fd = open(data->no, O_RDONLY);
 	if (fd == -1)
