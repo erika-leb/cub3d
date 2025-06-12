@@ -30,6 +30,7 @@ SRC_FILES = ${SRC_DIR}/main.c \
 			${SRC_DIR}/parsing_check_color.c \
 			${SRC_DIR}/parsing_extention.c \
 			${SRC_DIR}/parsing_get_map.c \
+			${SRC_DIR}/parsing_flood_fill.c \
 
 OBJ_FILES =	$(OBJ_DIR)/main.o \
 			${OBJ_DIR}/gc_cleanup.o \
@@ -45,6 +46,8 @@ OBJ_FILES =	$(OBJ_DIR)/main.o \
 			$(OBJ_DIR)/parsing_check_color.o \
 			$(OBJ_DIR)/parsing_extention.o \
 			$(OBJ_DIR)/parsing_get_map.o \
+			$(OBJ_DIR)/parsing_flood_fill.o \
+
 
 NAME = cub3D
 

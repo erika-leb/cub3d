@@ -47,6 +47,7 @@ typedef struct s_data
 	int		start;
 	char	*arg;
 	char	*line;
+	char	**m;
 }	t_data;
 
 //parsing.c
@@ -66,6 +67,9 @@ int		ft_check_color(t_data *data, t_gc *gc);
 int		ft_xpm_extention(char *s);
 int		ft_check_extention(char *s);
 
+//parsing_flood_fill.c
+int 	ft_flood_fill(t_data *data, t_gc *gc);
+
 //get_next_line.c
 char	*get_next_line(int fd, t_data *data, t_gc *gc);
 
@@ -81,5 +85,6 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup_bis(char *s, t_gc *gc);
 void	ft_lose_space(char *s, int *i);
 int		ft_is_space(char c);
+int		ft_type_line(char *line); //ailleurs ??
 
 #endif

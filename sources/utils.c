@@ -59,3 +59,27 @@ int	ft_is_space(char c)
 		return (1);
 	return (0);
 }
+
+int	ft_type_line(char *line)
+{
+	int	i;
+	int	f;
+
+	i = 0;
+	f = 0;
+	while (line[i])
+	{
+		if (!(line[i] == ' ' || line[i] == '0' || line[i] == '1' ||
+				line[i] == 'N' || line[i] == 'S' || line[i] == 'E' ||
+				line[i] == 'W' || (line[i] >= 9 && line[i] <= 13)))
+		{
+			printf("Error: invalid line\n");
+			return (2); //quitter
+		}
+		if (line[i] == '1' || line[i] == '0')
+			f = 1;
+		i++;
+	}
+	// printf("f = %d\n", f);
+	return (f);
+}

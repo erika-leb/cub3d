@@ -45,6 +45,8 @@ int	ft_second_part(t_data *data, t_gc *gc) //prevoir le cas ou il n'y a pas de m
 	if (ft_arr_size(data, gc) == 1)
 		return (1);
 	ft_get_map(data, gc);
+	if (ft_flood_fill(data, gc) == 1)
+		return (1);
 	return (0);
 }
 
