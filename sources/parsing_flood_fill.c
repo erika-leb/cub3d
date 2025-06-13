@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:13:33 by ele-borg          #+#    #+#             */
-/*   Updated: 2025/06/12 19:55:10 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/12 21:11:00 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,13 @@ int	ft_up_down(t_data *data, int l)
 	c = 0;
 	if (l == 0 || l == data->lg - 1) //premiere et derniere ligne
 	{
-		while (data->map[l][c])
+		while (data->m[l][c])
 		{
-			if (data->map[l][c] == '0')
+			if (data->m[l][c] != '1')
+			{
+				printf("l = %d, c = %d\n", l, c);
 				return (1);
+			}
 			c++;
 		}
 	}
@@ -73,7 +76,10 @@ int	ft_is_closed(t_data *data)
 	{
 		c = 0;
 		if (ft_up_down(data, l) == 1)
+		{
+			// perror("ici");
 			return (1);
+		}
 		// if (l == 0 || l == data->lg - 1) //premiere et derniere ligne
 		// {
 		// 	while (data->map[l][c])
@@ -85,13 +91,19 @@ int	ft_is_closed(t_data *data)
 		// }
 		while (ft_is_space(data->m[l][c]) == 1)
 			c++;
-		if (data->map[l][c] == '0')
+		if (data->m[l][c] != '1')
+		{
+			// perror("la");
 			return (1);
+		}
 		c = data->cl - 1;
 		while (ft_is_space(data->m[l][c]) == 1)
 			c--;
-		if (data->map[l][c] == '0')
+		if (data->m[l][c] != '1')
+		{
+			// perror("encore");
 			return (1);
+		}
 	}
 	return (0);
 }

@@ -40,7 +40,6 @@ int	ft_is_conformed(char *s)
 	}
 	return (0);
 }
-
 int	ft_get_nb(char *s, int f, int *i)
 {
 	int	nb;
@@ -55,8 +54,10 @@ int	ft_get_nb(char *s, int f, int *i)
 	}
 	else
 	{
+		if (!s[*i] || (s[*i] == ',' && !s[(*i) + 1]))
+			return (-1);
+		// printf("dernier color =%ci\n", s[*i]);
 		(*i)++;
-		// printf("%c\n", s[*i]);
 		while (s[*i] || (s[*i] && ft_is_space(s[*i]) != 1))
 			nb = nb * 10 + s[(*i)++] - '0';
 	}
@@ -127,11 +128,11 @@ int	ft_check_color(t_data *data, t_gc *gc)
 	if (ft_get_color_ceiling(data) == 1)
 		return (1);
 	// perror("dans");
-	printf("c[0] = %d\n", data->ceiling[0]);
-	printf("c[1] = %d\n", data->ceiling[1]);
-	printf("c[2] = %d\n", data->ceiling[2]);
-	printf("f[0] = %d\n", data->floor[0]);
-	printf("f[1] = %d\n", data->floor[1]);
-	printf("f[2] = %d\n", data->floor[2]);
+	// printf("c[0] = %d\n", data->ceiling[0]);
+	// printf("c[1] = %d\n", data->ceiling[1]);
+	// printf("c[2] = %d\n", data->ceiling[2]);
+	// printf("f[0] = %d\n", data->floor[0]);
+	// printf("f[1] = %d\n", data->floor[1]);
+	// printf("f[2] = %d\n", data->floor[2]);
 	return (0);
 }

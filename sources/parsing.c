@@ -56,9 +56,9 @@ int	ft_get_data(t_data *data, t_gc *gc)
 	data->i = 0;
 	if (ft_first_part(data, gc) == 1)
 		return (1);
-	if (ft_second_part(data, gc) == 1)
-		return (1);
 	if (ft_check_walls(data, gc) == 1)
+		return (1);
+	if (ft_second_part(data, gc) == 1)
 		return (1);
 	return (0);
 }
