@@ -73,7 +73,7 @@ int	ft_type_line(char *line)
 				line[i] == 'N' || line[i] == 'S' || line[i] == 'E' ||
 				line[i] == 'W' || (line[i] >= 9 && line[i] <= 13)))
 		{
-			printf("Error: invalid line\n");
+			printf("Error\nInvalid line\n");
 			return (2); //quitter
 		}
 		if (line[i] == '1' || line[i] == '0')

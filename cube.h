@@ -48,7 +48,7 @@ typedef struct s_data
 	int		start;
 	char	*arg;
 	char	*line;
-	char	**m;
+	// char	**m;
 	// int		pos_l;
 	// int		pos_c;
 }	t_data;

@@ -26,7 +26,7 @@ int	ft_first_part(t_data *data, t_gc *gc)
 			return (1);
 		if (r == 0)
 		{
-			printf("Error: Missing texture or color\n");
+			printf("Error\nMissing texture or color\n");
 			return (1);
 		}
 		if (r == 8)

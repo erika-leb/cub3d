@@ -70,7 +70,7 @@ void	clean_stash_buffer(t_data *data, int *n, t_gc *gc)
 	if (j != -1)
 	{
 		tp = ft_substr(data->stash, j + 1, ft_strlen(data->stash) - j - 1, gc);
-		gc_free(data->stash,gc);
+		gc_free(data->stash, gc);
 		data->stash = ft_strdup(tp, gc);
 		(gc_free(tp, gc), gc_free(data->buffer, gc));
 	}
@@ -99,12 +99,12 @@ char	*get_next_line(int fd, t_data *data, t_gc *gc)
 	n = BUFFER_SIZE;
 	data->buffer = gc_calloc(BUFFER_SIZE + 1, sizeof(char), gc);
 	if (data->stash != NULL && data->stash[0] != '\0'
-			&& ft_strchr(data->stash, '\n') == -1)
+		&& ft_strchr(data->stash, '\n') == -1)
 	{
 		line = ft_strdup(data->stash, gc);
 	}
 	else if (data->stash != NULL && data->stash[0] != '\0'
-			&& ft_strchr(data->stash, '\n') != -1)
+		&& ft_strchr(data->stash, '\n') != -1)
 	{
 		line = ft_substr(data->stash, 0, ft_strchr(data->stash, '\n') + 1, gc);
 	}

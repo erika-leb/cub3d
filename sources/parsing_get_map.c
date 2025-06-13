@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:13:33 by ele-borg          #+#    #+#             */
-/*   Updated: 2025/06/12 15:48:36 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:43:36 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_manage_line(int *f, t_data *data)
 		(*f) = 1;
 	if (n == 1 && (*f) == 1)
 	{
-		printf("Error: Empty line in map\n");
+		printf("Error\nEmpty line in map\n");
 		return (1);
 	}
     else if (n == 1)

@@ -37,7 +37,7 @@ t_data	*ft_init(t_gc *gc)
 	data->start = 0;
 	data->arg = NULL;
 	data->line = NULL;
-	data->m = NULL;
+	// data->m = NULL;
 	// data->pos_c = -1;
 	// data->pos_l = -1;
 	return (data);
