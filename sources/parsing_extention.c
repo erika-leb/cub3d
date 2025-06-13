@@ -16,15 +16,7 @@ int	ft_xpm_extention(char *s)
 {
 	int	i;
 
-	// i = 0;
-	// while(s[i])
-	// {
-	// 	printf("%d = %d\n", i, s[i]);
-	// 	i++;
-	// }
-
 	i = 0;
-
 	while (s[i])
 		i++;
 	if (i < 5)
@@ -56,6 +48,13 @@ int	ft_check_extention(char *s)
 	if (s[i - 3] != 'c')
 		return (1);
 	if (s[i - 4] != '.')
+		return (1);
+	return (0);
+}
+
+int	ft_is_o(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == '0')
 		return (1);
 	return (0);
 }

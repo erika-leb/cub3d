@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strcmp(const char *s1, const char *s2, size_t n)
 {
 	int	i;
 
@@ -69,17 +69,16 @@ int	ft_type_line(char *line)
 	f = 0;
 	while (line[i])
 	{
-		if (!(line[i] == ' ' || line[i] == '0' || line[i] == '1' ||
-				line[i] == 'N' || line[i] == 'S' || line[i] == 'E' ||
-				line[i] == 'W' || (line[i] >= 9 && line[i] <= 13)))
+		if (!(line[i] == ' ' || line[i] == '0' || line[i] == '1'
+				|| line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
+				|| line[i] == 'W' || (line[i] >= 9 && line[i] <= 13)))
 		{
 			printf("Error\nInvalid line\n");
-			return (2); //quitter
+			return (2);
 		}
 		if (line[i] == '1' || line[i] == '0')
 			f = 1;
 		i++;
 	}
-	// printf("f = %d\n", f);
 	return (f);
 }

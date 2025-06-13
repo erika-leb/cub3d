@@ -19,21 +19,24 @@ int	ft_check_if_texture(int *i, char *line)
 	r = 0;
 	if (!(line + (*i)))
 		return (7);
-	if (ft_strncmp(line + (*i), "\0", 1) == 0)
+	if (ft_strcmp(line + (*i), "\0", 1) == 0)
 		r = 7;
-	if (ft_strncmp(line + (*i), "NO", 2) == 0 && ft_is_space(line[*i + 2]) == 1)
+	if (ft_strcmp(line + (*i), "NO", 2) == 0 && ft_is_space(line[*i + 2]) == 1)
 		r = 1;
-	if (ft_strncmp(line + (*i), "SO ", 2) == 0 && ft_is_space(line[*i + 2]) == 1)
+	if (ft_strcmp(line + (*i), "SO ", 2) == 0
+		&& ft_is_space(line[*i + 2]) == 1)
 		r = 2;
-	if (ft_strncmp(line + (*i), "WE ", 2) == 0 && ft_is_space(line[*i + 2]) == 1)
+	if (ft_strcmp(line + (*i), "WE ", 2) == 0 && ft_is_space(line[*i + 2]) == 1)
 		r = 3;
-	if (ft_strncmp(line + (*i), "EA ", 2)== 0 && ft_is_space(line[*i + 2]) == 1)
+	if (ft_strcmp(line + (*i), "EA ", 2) == 0
+		&& ft_is_space(line[*i + 2]) == 1)
 		r = 4;
-	if (ft_strncmp(line + (*i), "C ", 1) == 0 && ft_is_space(line[*i + 1]) == 1)
+	if (ft_strcmp(line + (*i), "C ", 1) == 0 && ft_is_space(line[*i + 1]) == 1)
 		r = 5;
-	if (ft_strncmp(line + (*i), "F ", 1) == 0 && ft_is_space(line[*i + 1]) == 1)
+	if (ft_strcmp(line + (*i), "F ", 1) == 0 && ft_is_space(line[*i + 1]) == 1)
 		r = 6;
-	if (ft_strncmp(line + (*i), "1", 1) == 0 || ft_strncmp(line + (*i), "0", 1) == 0)
+	if (ft_strcmp(line + (*i), "1", 1) == 0
+		|| ft_strcmp(line + (*i), "0", 1) == 0)
 		r = 8;
 	return (r);
 }

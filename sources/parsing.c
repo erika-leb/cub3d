@@ -36,11 +36,10 @@ int	ft_first_part(t_data *data, t_gc *gc)
 			return (1);
 		(data->lg)++;
 	}
-	// printf("lin = %s\n", data->line);
 	return (0);
 }
 
-int	ft_second_part(t_data *data, t_gc *gc) //prevoir le cas ou il n'y a pas de map
+int	ft_second_part(t_data *data, t_gc *gc)
 {
 	if (ft_arr_size(data, gc) == 1)
 		return (1);
@@ -72,8 +71,7 @@ int	ft_parsing(char **argv, t_data *data, t_gc *gc)
 	}
 	if (ft_check_extention(argv[1]) == 1)
 	{
-		// write(2,"Error: No .cub file found\n", 27);
-		write(2,"Error: Wrong filetype\n", 23);
+		write(2, "Error\nWrong filetype\n", 22);
 		return (1);
 	}
 	data->fd = open(argv[1], O_RDONLY);

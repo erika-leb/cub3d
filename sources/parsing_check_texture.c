@@ -16,12 +16,9 @@ int	ft_check_files(t_data *data)
 {
 	int	fd;
 
-	// perror("ici");
-	// printf("chemin = %s\n", data->ea);
 	fd = open(data->ea, O_RDONLY);
 	if (fd == -1)
 		return (1);
-	// perror("la");
 	close(fd);
 	fd = open(data->no, O_RDONLY);
 	if (fd == -1)
@@ -41,7 +38,7 @@ int	ft_check_files(t_data *data)
 int	ft_check_walls(t_data *data, t_gc *gc)
 {
 	if (data->no == NULL || data->so == NULL || data->we == NULL
-			|| data->ea == NULL || data->c == NULL || data->f == NULL)
+		|| data->ea == NULL || data->c == NULL || data->f == NULL)
 	{
 		printf("Error\nMissing texture or color\n");
 		return (1);
@@ -51,7 +48,7 @@ int	ft_check_walls(t_data *data, t_gc *gc)
 	// printf("so = %si\n", data->so);
 	// printf("we = %si\n", data->we);
 	if (ft_xpm_extention(data->no) == 1 || ft_xpm_extention(data->so) == 1
-			|| ft_xpm_extention(data->we) == 1 || ft_xpm_extention(data->ea) == 1)
+		|| ft_xpm_extention(data->we) == 1 || ft_xpm_extention(data->ea) == 1)
 	{
 		printf("Error\nWrong texture extention\n");
 		return (1);
