@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:05:27 by aisidore          #+#    #+#             */
-/*   Updated: 2025/06/20 16:31:49 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:54:44 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ void	ft_fbmove(int key, t_mlx_data *pdata)
 {
 	if (key == XK_w)
 	{
-		if (pdata->map[(int)(pdata->posY)][(int)ft_fb(pdata, 0, XK_w)] == '0')
+		if (pdata->map[(int)(pdata->posY)][(int)ft_fb(pdata, 0, XK_w)] != '1')
 			pdata->posX += pdata->dirX * pdata->moveSpeed;
-		if (pdata->map[(int)ft_fb(pdata, 1, XK_w)][(int)(pdata->posX)] == '0')
+		if (pdata->map[(int)ft_fb(pdata, 1, XK_w)][(int)(pdata->posX)] != '1')
 			pdata->posY += pdata->dirY * pdata->moveSpeed;
 	}
 	if (key == XK_s)
 	{
-		if (pdata->map[(int)(pdata->posY)][(int)ft_fb(pdata, 0, XK_s)] == '0')
+		if (pdata->map[(int)(pdata->posY)][(int)ft_fb(pdata, 0, XK_s)] != '1')
 			pdata->posX -= pdata->dirX * pdata->moveSpeed;
-		if (pdata->map[(int)ft_fb(pdata, 1, XK_s)][(int)(pdata->posX)] == '0')
+		if (pdata->map[(int)ft_fb(pdata, 1, XK_s)][(int)(pdata->posX)] != '1')
 			pdata->posY -= pdata->dirY * pdata->moveSpeed;
 	}
 }
@@ -69,16 +69,16 @@ void	ft_latmove(int key, t_mlx_data *pdata)
 {
 	if (key == XK_d)
 	{
-		if (pdata->map[(int)(pdata->posY)][(int)ft_lat(pdata, 0, XK_d)] == '0')
+		if (pdata->map[(int)(pdata->posY)][(int)ft_lat(pdata, 0, XK_d)] != '1')
 			pdata->posX += pdata->planeX * pdata->moveSpeed;
-		if (pdata->map[(int)ft_lat(pdata, 1, XK_d)][(int)(pdata->posX)] == '0')
+		if (pdata->map[(int)ft_lat(pdata, 1, XK_d)][(int)(pdata->posX)] != '1')
 			pdata->posY += pdata->planeY * pdata->moveSpeed;
 	}
 	if (key == XK_a)
 	{
-		if (pdata->map[(int)(pdata->posY)][(int)ft_lat(pdata, 0, XK_a)] == '0')
+		if (pdata->map[(int)(pdata->posY)][(int)ft_lat(pdata, 0, XK_a)] != '1')
 			pdata->posX -= pdata->planeX * pdata->moveSpeed;
-		if (pdata->map[(int)ft_lat(pdata, 1, XK_a)][(int)(pdata->posX)] == '0')
+		if (pdata->map[(int)ft_lat(pdata, 1, XK_a)][(int)(pdata->posX)] != '1')
 			pdata->posY -= pdata->planeY * pdata->moveSpeed;
 	}
 }

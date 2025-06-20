@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:00:57 by aisidore          #+#    #+#             */
-/*   Updated: 2025/06/20 16:15:37 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:51:18 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,14 @@ static void	ft_dda(t_mlx_data *pdata, t_data *data_erika)
 		// printf("ligne (y) : %d     colonne (x): %d\n", pdata->dda.mapY, pdata->dda.mapX);
 		//Check si j'ai touche un mur
 		// if (worldMap[pdata->dda.mapY][pdata->dda.mapX] > '0')
-		if (pdata->map[pdata->dda.mapY][pdata->dda.mapX] > '0')
+		if (pdata->map[pdata->dda.mapY][pdata->dda.mapX] == '1')
 			pdata->dda.hit = 1;
 		// perror("test2");
 	}
 }
+
+
+
 
 //Faut il utiliser SDL pour + de fluidité et pour les sprites animés ?
 void	ft_display(t_mlx_data *pdata, t_data *data_erika, void (*fn)(t_mlx_data *))

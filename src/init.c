@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 17:35:16 by aisidore          #+#    #+#             */
-/*   Updated: 2025/06/20 16:24:40 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:49:43 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,14 @@ static void ft_initdir(t_mlx_data *data, char direction)
 static void	ft_initplayer(t_mlx_data *pdata, t_data *data_erika)
 {
 	// (void)data_erika;
+	/////////////Useless
+	pdata->lg = data_erika->lg;//y HEIGHT MAPHEIGHT ?
+	pdata->cl = data_erika->cl;//x WIDTH MAPWIDTH ?
+	///////////////////////////////////////////////
 	pdata->map = data_erika->map; //ici
 	// pdata->map = NULL;
-	pdata->posX = data_erika->pos_x;//12
-	pdata->posY = data_erika->pos_y;//10
+	pdata->posX = (double)data_erika->pos_x;//12
+	pdata->posY = (double)data_erika->pos_y;//10
 	pdata->dirX = 0;
 	pdata->dirY = -1;
 	pdata->planeX = 0.66;
