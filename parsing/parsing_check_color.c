@@ -57,15 +57,18 @@ int	ft_get_nb(char *s, int f, int *i)
 		if (!s[*i] || (s[*i] == ',' && !s[(*i) + 1]))
 			return (-1);
 		(*i)++;
-		while (s[*i] || (s[*i] && ft_is_space(s[*i]) != 1))
+		// while (s[*i] || (s[*i] && ft_is_space(s[*i]) != 1))
+		while ((s[*i] && s[*i] >= '0' && s[*i] <= '9'))
+		{
 			nb = nb * 10 + s[(*i)++] - '0';
+		}
 	}
 	if (!(nb >= 0 && nb <= 255))
 		return (-1);
 	return (nb);
 }
 
-int	ft_get_color_ceiling(t_data *data)
+int	ft_get_color_ceiling(t_data *data) //ici
 {
 	int	i;
 	int	nb;
@@ -73,17 +76,20 @@ int	ft_get_color_ceiling(t_data *data)
 	i = -1;
 	nb = ft_get_nb(data->c, 1, &i);
 	if (nb == -1)
-		return (1);
+		perror ("kass");
 	data->ceiling[0] = nb;
 	if (!(data->c[i]))
-		return (1);
+		perror ("de");
 	nb = ft_get_nb(data->c, 1, &i);
 	if (nb == -1)
 		return (1);
 	data->ceiling[1] = nb;
 	nb = ft_get_nb(data->c, 2, &i);
 	if (nb == -1)
+	{
+		perror ("nceic");
 		return (1);
+	}
 	data->ceiling[2] = nb;
 	return (0);
 }
