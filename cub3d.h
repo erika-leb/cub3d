@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 17:22:48 by aisidore          #+#    #+#             */
-/*   Updated: 2025/06/20 16:45:14 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/20 17:53:40 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,8 +174,16 @@ typedef struct s_mlx_data
 
 	char **map;
 
+	//useless
 	int		lg;
 	int		cl;
+
+	int crr;
+	int cgg;
+	int cbb;
+	int frr;
+	int fgg;
+	int fbb;
 
 	void	*connect;
 	void	*win_ptr;

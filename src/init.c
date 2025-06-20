@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 17:35:16 by aisidore          #+#    #+#             */
-/*   Updated: 2025/06/20 16:49:43 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/20 17:54:19 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,12 @@ static void	ft_initplayer(t_mlx_data *pdata, t_data *data_erika)
 {
 	// (void)data_erika;
 	/////////////Useless
+	pdata->crr = data_erika->ceiling[0];
+	pdata->cgg = data_erika->ceiling[1];
+	pdata->cbb = data_erika->ceiling[2];
+	pdata->frr = data_erika->floor[0];
+	pdata->fgg = data_erika->floor[1];
+	pdata->fbb = data_erika->floor[2];
 	pdata->lg = data_erika->lg;//y HEIGHT MAPHEIGHT ?
 	pdata->cl = data_erika->cl;//x WIDTH MAPWIDTH ?
 	///////////////////////////////////////////////

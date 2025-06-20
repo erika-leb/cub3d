@@ -6,7 +6,7 @@
 /*   By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 17:35:16 by aisidore          #+#    #+#             */
-/*   Updated: 2025/06/19 16:37:51 by ele-borg         ###   ########.fr       */
+/*   Updated: 2025/06/20 17:05:42 by ele-borg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,29 +83,29 @@ int	main(int ac, char **av)
 	//Croix qui marche pas
 	//Frame trop lent
 		//pour merger le code//
-	char **map2;
-	int k = 0;
-	int i;
-	map2 = gc_malloc(sizeof(char *) * (data_erika->lg + 1), &gc);
-	while (k < data_erika->lg)
-	{
-		map2[k] = gc_malloc(sizeof(char) * (data_erika->cl + 1), &gc);
-		i = 0;
-		while (i < data_erika->cl)
-		{
-			map2[k][i] = data_erika->map[k][i];
-			i++;
-		}
-		map2[k][i] = '\0';
-		k++;
-		map2[k] = NULL;
-	}
-	k = 0;
-	while (k < data_erika->lg)
-	{
-		printf("%s\n", map2[k]);
-		k++;
-	}
+	// char **map2;
+	// int k = 0;
+	// int i;
+	// map2 = gc_malloc(sizeof(char *) * (data_erika->lg + 1), &gc);
+	// while (k < data_erika->lg)
+	// {
+	// 	map2[k] = gc_malloc(sizeof(char) * (data_erika->cl + 1), &gc);
+	// 	i = 0;
+	// 	while (i < data_erika->cl)
+	// 	{
+	// 		map2[k][i] = data_erika->map[k][i];
+	// 		i++;
+	// 	}
+	// 	map2[k][i] = '\0';
+	// 	k++;
+	// 	map2[k] = NULL;
+	// }
+	// k = 0;
+	// while (k < data_erika->lg)
+	// {
+	// 	printf("%s\n", map2[k]);
+	// 	k++;
+	// }
 	// gc_cleanup(&gc);
 	//fin//
 
