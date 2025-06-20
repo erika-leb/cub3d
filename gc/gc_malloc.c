@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "gc.h"
-#include "../cube.h"
+#include "cub3d.h"
 
 /* Fonctions utiles pour créer la chaine répertoriant tous les malloc */
 

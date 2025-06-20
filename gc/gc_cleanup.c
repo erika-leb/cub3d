@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "gc.h"
-#include "../cube.h"
+#include "cub3d.h"
 
 /* Fonction utile pour libérer tous les mallocs d'un coup */
 

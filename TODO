@@ -1,0 +1,7 @@
+valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all ./cub3D maps/good/1.cub
+
+ft_dda fonctionne pas avec la map d'Erika
+
+ft_loophook et ft_loophookbonus ont un 2eme parametre (gc) qui n'est pas cense etre la. Donc risque de bugs
+
+cub3d_bonus.h useless ?

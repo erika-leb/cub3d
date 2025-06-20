@@ -5,83 +5,99 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ele-borg <ele-borg@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/04 18:23:01 by ele-borg          #+#    #+#              #
-#    Updated: 2025/06/03 16:23:08 by ele-borg         ###   ########.fr        #
+#    Created: 2025/04/22 17:30:38 by aisidore          #+#    #+#              #
+#    Updated: 2025/06/20 16:30:28 by ele-borg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#variables
+##A refaire pour la partie bonus
+C_SRCS = gc/gc_cleanup.c \
+		 gc/gc_malloc.c \
+		 gc/gc_realloc.c \
+		 gc/gc_remove.c \
+		 parsing/get_next_line.c \
+		 parsing/get_next_line_utils.c \
+		 parsing/utils.c \
+		 parsing/parsing.c \
+		 parsing/parsing_get_texture.c \
+		 parsing/parsing_check_texture.c \
+		 parsing/parsing_check_color.c \
+		 parsing/parsing_extention.c \
+		 parsing/parsing_get_map.c \
+		 parsing/parsing_flood_fill.c \
+		 src/init.c \
+		 src/exit.c \
+		 src/hook_utils.c \
+		 src/hook.c \
+		 src/display.c \
+		 src/texture_utils.c \
+		 src/texture.c \
+		 src/map.c
 
-SRC_DIR = sources
-OBJ_DIR = objets
-GC_DIR = gc
+SRCS =  src/main.c $(C_SRCS)
 
-SRC_FILES = ${SRC_DIR}/main.c \
-			${GC_DIR}/gc_cleanup.c \
-			${GC_DIR}/gc_malloc.c \
-			${GC_DIR}/gc_realloc.c \
-			${GC_DIR}/gc_remove.c \
-			${SRC_DIR}/get_next_line.c \
-			${SRC_DIR}/get_next_line_utils.c \
-			${SRC_DIR}/utils.c \
-			${SRC_DIR}/parsing.c \
-			${SRC_DIR}/parsing_get_texture.c \
-			${SRC_DIR}/parsing_check_texture.c \
-			${SRC_DIR}/parsing_check_color.c \
-			${SRC_DIR}/parsing_extention.c \
-			${SRC_DIR}/parsing_get_map.c \
-			${SRC_DIR}/parsing_flood_fill.c \
+BONUS_SRCS = src/main_bonus.c $(C_SRCS)
 
-OBJ_FILES =	$(OBJ_DIR)/main.o \
-			${OBJ_DIR}/gc_cleanup.o \
-			${OBJ_DIR}/gc_malloc.o \
-			${OBJ_DIR}/gc_realloc.o \
-			${OBJ_DIR}/gc_remove.o \
-			$(OBJ_DIR)/get_next_line.o \
-			$(OBJ_DIR)/get_next_line_utils.o \
-			$(OBJ_DIR)/utils.o \
-			$(OBJ_DIR)/parsing.o \
-			$(OBJ_DIR)/parsing_get_texture.o \
-			$(OBJ_DIR)/parsing_check_texture.o \
-			$(OBJ_DIR)/parsing_check_color.o \
-			$(OBJ_DIR)/parsing_extention.o \
-			$(OBJ_DIR)/parsing_get_map.o \
-			$(OBJ_DIR)/parsing_flood_fill.o \
+C_OBJS = objets/gc_cleanup.o \
+		 objets/gc_malloc.o \
+		 objets/gc_realloc.o \
+		 objets/gc_remove.o \
+		 objets/get_next_line.o \
+		 objets/get_next_line_utils.o \
+		 objets/utils.o \
+		 objets/parsing.o \
+		 objets/parsing_get_texture.o \
+		 objets/parsing_check_texture.o \
+		 objets/parsing_check_color.o \
+		 objets/parsing_extention.o \
+		 objets/parsing_get_map.o \
+		 objets/parsing_flood_fill.o \
+		 objets/init.o \
+		 objets/stop.o \
+	   	 objets/hook_utils.o \
+	   	 objets/hook.o \
+	   	 objets/display.o \
+	   	 objets/texture_utils.o \
+	   	 objets/texture.o \
+	   	 objets/map.o
 
+OBJS = objets/main.o
+
+BONUS_OBJS = objets/main_bonus.o
+
+PTH = ../minilibx-linux/
 
 NAME = cub3D
+BONUS_NAME = cub3D_bonus
 
-FLAGS_C = -Wall -Wextra -g3 -I.
-# FLAGS_C = -Wall -Wextra -Werror -g3 -I.
+FLAGS = -Wall -Wextra -Werror -g3 -I.
+MFLAGS = -lm -lmlx -lX11 -lXext -O3
 
-CC = cc
+all: $(NAME)
+$(NAME): $(C_OBJS) $(OBJS)
+	cc $(FLAGS) $(C_OBJS) $(OBJS) -L$(PTH) $(MFLAGS) -o $(NAME)
 
-#rules
+objets/%.o: src/%.c
+	mkdir -p objets
+	cc $(FLAGS) -c $< -o $@
+objets/%.o: parsing/%.c
+	@mkdir -p objets
+	cc $(FLAGS) -c $< -o $@
+objets/%.o: gc/%.c
+	@mkdir -p objets
+	cc $(FLAGS) -c $< -o $@
 
-all: ${NAME}
-
-${NAME}: ${OBJ_FILES}
-	${CC} ${OBJ_FILES} -o ${NAME}
-
-${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
-	@mkdir -p ${OBJ_DIR}
-	$(CC) -c $(FLAGS_C) $< -o $@
-
-${OBJ_DIR}/%.o: ${GC_DIR}/%.c
-	@mkdir -p ${OBJ_DIR}
-	$(CC) -c $(FLAGS_C) $< -o $@
-
-GC_OBJ_FILES:
-	$(MAKE) -C ${GC_DIR}
+bonus : $(BONUS_NAME)
+$(BONUS_NAME): $(C_OBJS) $(BONUS_OBJS)
+	cc $(FLAGS) $(C_OBJS) $(BONUS_OBJS) -L$(PTH) $(MFLAGS) -o $(BONUS_NAME)
 
 clean:
-	rm  -f ${OBJ_FILES}
+	rm -f objets/*.o
 
 fclean: clean
-	rm -f ${NAME}
+	rm -f $(NAME) $(BONUS_NAME)
 
 re: fclean all
+rebonus: fclean bonus
 
-reclean : all clean
-
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re rebonus

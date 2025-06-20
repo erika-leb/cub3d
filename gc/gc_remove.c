@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "gc.h"
-#include "../cube.h"
+#include "cub3d.h"
 
 /* Fonction pour libérer un malloc spécifique trouvé par son pointeur */
 
